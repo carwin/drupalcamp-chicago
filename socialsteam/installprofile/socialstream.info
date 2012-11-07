@@ -1,0 +1,22 @@
+name = Social Stream
+description = Aggregates twitter streams and soon facebook and google plus as well
+version = VERSION
+core = 7.x
+
+; Drupal Core
+dependencies[] = block
+dependencies[] = dblog
+dependencies[] = field_ui
+dependencies[] = contextual
+dependencies[] = toolbar
+
+; Contrib
+dependencies[] = ctools
+dependencies[] = token
+dependencies[] = libraries
+dependencies[] = features
+dependencies[] = strongarm
+dependencies[] = r4032login
+
+; features
+dependencies[] = twitter_importer
