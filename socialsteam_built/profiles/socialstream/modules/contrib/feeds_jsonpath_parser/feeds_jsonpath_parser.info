@@ -1,0 +1,13 @@
+name = Feeds JSONPath Parser
+description = Parse a JSON document using JSONPath.
+files[] = tests/feeds_jsonpath_parser.test
+package = Feeds
+dependencies[] = feeds
+core = 7.x
+
+
+; Information added by drush on 2012-11-06
+version = "b0e12cd7c8b4ac7e55cd90617494316a26fc16e6"
+project = "feeds_jsonpath_parser"
+datestamp = "1352253825"
+

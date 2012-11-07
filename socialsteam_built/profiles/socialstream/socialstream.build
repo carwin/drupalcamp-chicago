@@ -1,0 +1,7 @@
+core = 7.x
+api = 2
+projects[] = drupal
+
+projects[socialstream][type] = "profile"
+projects[socialstream][download][type] = "git"
+projects[socialstream][download][url] = "git@pub1:site/socialstream/installprofile"
