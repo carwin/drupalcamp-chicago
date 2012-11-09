@@ -415,13 +415,13 @@ regions[one] = One region
     <br>
 </div>
 <h3>sample.make</h3>
-<pre>  name = Wysiwyg 
-  description = Allows to edit content with client-side editors. 
-  package = User interface 
-  core = 7.x 
-  configure = admin/config/content/wysiwyg  
-  files[] = wysiwyg.module
-  files[] = tests/wysiwyg.test
+<pre>
+core = 7.x
+api = 2
+
+projects[] = menu_block
+projects[] = pathauto
+projects[] = token
 </pre>
 <div>
     <br>
