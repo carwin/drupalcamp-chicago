@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+    <section>
+        <section>
+            <h1>Tools For Rapid Drupal Deployment<br>
+            </h1>
+            <p>
+            <br>
+        </p>
+    </section>
+    <section>
+        <h4>
+            <br>
+        </h4>
+        <h4>What is&nbsp;"<b>Rapid Drupal Deployment</b>" ?</h4>
+        <div>
+            <br>
+        </div>
+        <div>
+            <br>
+        </div>
+        <div>
+            <ul>
+                <li>Building re-usable platforms rather than <br>building singular sites</li>
+                <li>Focusing on repeatable configurations to <br>launch the same platform on multiple servers</li>
+                <li>Separating our configuration from our content <br>(as much as possible).</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <p>
+        <br>
+    </p>
+    <p>
+    <br>
+</p>
+<p>
+<img src="http://i.imgur.com/92VnH.png">
+<br>
+</p>
+</section>
+<section>
+    <h2>
+        <br>
+    </h2>
+    <h2>WHY?<br>
+    </h2>
+    <div>
+        <ol>
+            <li>It saves time.</li>
+            <li>We like things DRY.</li>
+            <li>It saves time.</li>
+            <li>Re-usable is good.</li>
+            <li>
+                <b>It saves time.</b>
+            </li>
+        </ol>
+    </div>
+</section>
+</section>
+<section>
+    <section>
+        <h2>
+            <br>
+        </h2>
+        <h2>Installation Profiles</h2>
+        <h2>
+            <img src="http://i.imgur.com/iYnl1.png">
+            <br>
+        </h2>
+    </section>
+    <section>
+        <h2>What is an&nbsp;<br>Installation Profile?</h2>
+        <div>
+            <br>
+        </div>
+        <div>
+            <br>
+        </div>
+        <div>
+            <br>
+        </div>
+        <div>[info here]</div>
+    </section>
+    <section>
+        <h3>
+    <br>
+</h3>
+<h3>What do we need to create one?</h3>
+        <div>
+            <br>
+        </div>
+<div>
+        <ul>
+            <li>A <b>.info</b> file - to describe the various module<br>dependencies you want to enforce.<br>
+                <br>
+            </li>
+            <li>A <b>.install</b> file - to set your variables and<br>Configure All The Things ™<br>
+                <br>
+            </li>
+            <li>A <b>.profile</b> file - to use various Drupal hooks<br>like hook_form_alter() or hook_image_default_styles()</li>
+        </ul>
+    </div>
+</section>
+    <section>
+        <h2>Sample.info<br>
+        </h2>
+        <div>
+            <br>
+        </div>
+<pre>name = Great Profile!
+description = Really, this is better than other install profiles.
+core = 7.x
+
+;Core modules
+dependencies[] = php
+dependencies[] = rdf
+dependencies[] = block
+
+;Contrib modules
+dependencies[] = pathauto
+dependencies[] = menu_block
+dependencies[] = token
+</pre>
+    </section>
+    <section>
+        <h2>Sample.install<br>
+        </h2>
+        <div>
+            <br>
+        </div>
+<pre>function sample_install() {
+    
+    // Turn off comments for basic pages
+    variable_set('comment_page', COMMENT_NODE_HIDDEN);
+    
+    // No user pictures
+    variable_set('user_pictures', 0);
+    
+    // Theme stuff!
+    variable_set('theme_default', 'bartik');
+    variable_set('admin_theme', 'rubik');
+    variable_set('node_admin_theme', '1');
+    thme_enable('tao', 'rubik'));
+}
+</pre>
+
+
+</section>
+        <section>
+            <h2>Sample.profile<br>
+            </h2>
+            <div>
+                <br>
+            </div>
+<pre>function sample_form_alter(&amp;$form, $form_state, $form_id) {
+  switch($form_id) {
+    case "install_configure_form":
+    $form['admin_account']['account']['name]['#default_value'] = 'admin'
+    $form['admin_account']['account']['mail']['#default_value'] = 'me@me.com'
+       break;
+  }
+}
+
+</pre>
+        </section>
+    </section>
+    <section>
+        <section>
+            <h2>
+    <br>
+</h2>
+<h2>Features!</h2>
+<div>
+    <img src="http://i.imgur.com/cofC8.png" style="border: 0.0px;">
+    <br>
+</div>
+</section>
+            <section>
+                <h2>What is a Feature?</h2>
+                <div>
+                    <br>
+                </div>
+<div style="float: left;">
+    <b style="font-size: medium;line-height: normal;font-weight: normal;">
+                <b style="font-weight: normal;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</b>
+            </b>
+            <img src="http://i.imgur.com/vCpom.png">&nbsp; &nbsp; &nbsp;</div>
+            <div style="float: left;">
+                <br>
+            </div>
+            <div style="float: right;">
+                <div style="text-align: left;">
+                    <br>
+                </div>
+                <div style="text-align: left;">Example Features:</div>
+                <ul>
+                    <li>A news and events section &nbsp; &nbsp;&nbsp;</li>
+<li>A blog</li>
+<li>A twitter aggregator</li>
+</ul>
+</div>
+</section>
+                    <section>
+                        <h2>What can be exported?</h2>
+                        <div>
+                            <ul>
+                                <li>Content Types</li>
+                                <li>Fields</li>
+                                <li>Menus</li>
+                                <li>Taxonomies</li>
+                                <li>Text Formats</li>
+                                <li>WYSIWYG styles</li>
+                                <li>User roles and permissions</li>
+                                <li>Views</li>
+                                <li>System Variables (via strongarm)</li>
+                                <li>Panels</li>
+                                <li>Etc...!</li>
+                            </ul>
+                        </div>
+                        <div style="text-align: left;">
+                            <br>
+                        </div>
+                    </section>
+                    <section>
+                        <h2>Who would want this?</h2>
+                        <div>
+                            <br>
+                        </div>
+                        <div>
+                            <ul>
+                                <li>People looking for quick and simple <br>reuse of the same functionality<br>-- Freelancers<br>-- Sweatshops<br>
+                                    <br>
+                                </li>
+                                <li>People looking to us Drupal in a dev,<br>stage, production environment<br>-- Businesses<br>-- Best Practice seekers</li>
+                            </ul>
+                        </div>
+                    </section>
+                    <section>
+                        <h2>
+    <br>
+</h2>
+<h2>
+    &nbsp;<img src="http://i.imgur.com/aA73Y.png">
+    <br>
+</h2>
+</section>
+                        <section>
+                            <h2>
+                                <img src="http://i.imgur.com/U1DGp.png">
+                                <br>
+                            </h2>
+                        </section>
+                        <section>
+                            <h2>
+                                <img src="http://i.imgur.com/AfofO.png">
+                                <br>
+                            </h2>
+                        </section>
+                    </section>
+                    <section>
+                        <section>
+                            <h2>Drush</h2>
+                            <h2>
+                                <img src="http://pawsru.org/fc/src/fc75643_126312599399.png">
+                            </h2>
+                            <p>(your first Drush experience)</p>
+                        </section>
+                        <section>
+                            <h3>Things Drush can do for us:</h3>
+                            <h5>
+                                <div style="text-align: left;">
+                                    <br>
+                                </div>
+                                <div style="text-align: left;">Download Drupal</div>
+                            </h5>
+                            <div>
+                                <pre style="width: 775.8px;">&gt; drush dl drupal OR drush dl drupal-7.13</pre>
+                                <h5 style="text-align: left;">Download modules</h5>
+                                <pre style="width: 775.8px;">&gt; drush dl contrib_module</pre>
+                                <h5 style="text-align: left;">Enable modules</h5>
+                                <pre style="width: 775.8px;">&gt; drush en contrib_module</pre>
+                                <h5 style="text-align: left;">Evaluate PHP</h5>
+                                <pre style="width: 775.8px;">&gt; drush ev "print 'woot';"</pre>
+                            </div>
+                            <div>
+                                <br>
+                            </div>
+                        </section>
+                        <section>
+                            <div>
+                                <br>
+                            </div>
+                            <h3 style="text-align: left;">this is a fake query</h3>
+                            <div>
+                                <pre style="width: 775.8px;">$query = db_delete('users')            <br>-&gt;notExists(db_select('fields','f')
+-&gt;fields('some_field') 
+-&gt;where('f.fid' = 'users.uid'))
+-&gt;execute();</pre>
+                                <h3 style="text-align: left;">
+                                    <span style="white-space: pre;">`drush ev` gives us this fake mysql</span>
+                                </h3>
+                            </div>
+                            <div>
+                                <pre style="width: 775.8px;">DELETE FROM {users} WHERE (&nbsp;
+NOT EXISTS (blah blah blah blah));</pre>
+                            </div>
+                        </section>
+                        <section>
+                            <h2>Other things Drush<br>can do:</h2>
+                            <div>
+                                <br>
+                            </div>
+                            <div>
+                                <br>
+                            </div>
+                            <div>
+                                <ul>
+                                    <li>sync databases with remote servers<br>
+                                    </li>
+                                    <li>sync files with remote servers<br>
+                                    </li>
+                                    <li>update Drupal core<br>
+                                    </li>
+                                    <li>set site variables<br>
+                                    </li>
+                                    <li>clear the cache<br>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                    <section>
+                        <section>
+                            <h2>Makefiles</h2>
+                            <div>
+                                <br>
+                            </div>
+                            <div>
+                                <br>
+                            </div>
+                            <div>[somthing interesting here]</div>
+                            <div>
+                                <br>
+                            </div>
+                        </section>
+                        <section>
+                            <h2>
+                                <br>
+                            </h2>
+                            <h2>vs</h2>
+<div style="overflow: hidden;">
+<div style="float: left;width: 49.0%;">
+<h4>module.info</h4>
+<pre>core = 7.x
+api = 2<br>
+projects[] = menu_block
+projects[] = pathauto
+projects[] = token<br>
+</pre>
+</div>
+<div style="float: left;width: 49.0%;">
+<h4>theme.info</h4>
+<pre>name = an info file
+description = great description
+core = 7.x
+
+stylesheets[all][] = layout.css
+regions[one] = One region
+
+</pre>
+</div>
+</div>
+    <br>
+
+
+</section>
+                            <section>
+                                <h2>Vs.</h2>
+<div>
+    <br>
+</div>
+<h3>sample.make</h3>
+<pre>  name = Wysiwyg 
+  description = Allows to edit content with client-side editors. 
+  package = User interface 
+  core = 7.x 
+  configure = admin/config/content/wysiwyg  
+  files[] = wysiwyg.module
+  files[] = tests/wysiwyg.test
+</pre>
+<div>
+    <br>
+</div>
+</section>
+                                <section>
+                                    <h2>Titleasdfasdfasdfas</h2>
+                                </section>
+                            </section>
+                        </div>
+	
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
