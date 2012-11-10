@@ -26,6 +26,11 @@
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
+    <style rel="stylesheet">
+      .left {
+        text-align: left;
+      }
+    </style>
 	</head>
 
 	<body>
@@ -367,16 +372,81 @@ NOT EXISTS (blah blah blah blah));</pre>
                     </section>
                     <section>
                         <section>
-                            <h2>Makefiles</h2>
-                            <h2>
-                              <img src="http://imgur.com/roMGQ.jpg" />
-                            </h2>
+                            <h2>Drush Make</h2>
+                              <img src="http://imgur.com/83yrb.jpg" />
                         </section>
                         <section>
-                            <h2>What Is a Makefile?</h2>
-                            <div>Manifest of resources.</div>
-                            <div>Can download install profiles, themes, modules, libraries, and features.</div>
-                            <div></div>
+                          <h2>How Can I Use Drush Make?</h2>
+                              <pre>
+drush make /path/to/my-install-profile-file.make
+drush make http://example.com/my-install-profile-file.make
+drush make http://github.com/my-install-profile-file.make
+                              </pre>
+                              <br/>
+                              <br/>
+                              <br/>
+                              <h4>More info</h4>
+                              <pre>
+drush help make
+</pre>
+                        </section>
+                        <section>
+                            <h2>What are makefiles anyway?</h2>
+                            <div>Can define make files<br/>&amp;<br/>Be included in make files</div>
+                            <br/>
+                              <ul>
+                                <li>install profiles</li>
+                                <li>themes</li>
+                                <li>modules</li>
+                                <li>libraries</li>
+                                <li>features</li>
+                              </ul>
+                        </section>
+                        <section>
+                            <h2>Makefiles Work Recursively!</h2>
+                            <ul>
+                              <li>myplatform.Build
+                                  <ul>
+                                    <li>my-platform-install-profile.make
+                                      <ul>
+                                        <li>views</li>
+                                        <li>entity</li>
+                                        <li>token</li>
+                                        <li>my-slideshow-feature
+                                          <ul>
+                                            <li>my-slideshow-feature.make
+                                              <ul>
+                                                <li>views_slideshow</li>
+                                                <li>jquery.cycle</li>
+                                              </ul>
+                                            </li>
+                                          </ul>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                              </li>
+                            </ul>
+                        </section>
+                        <section>
+                          <h2>Makefile Structure</h2>
+                              <h4>my-slideshow-feature.info</h4>
+                              <pre>name = My Slideshow Feature
+description = Creates a content type that.
+core = 7.x
+
+dependencies[] = views_slideshow
+                              </pre>
+                            <h4>my-slideshow-feature.make</h4>
+                            <pre>core = 7.x
+api = 2<br>
+projects[] = views
+projects[] = views_slideshow
+
+libraries[jquery.cycle][type] = "libraries"
+libraries[jquery.cycle][download][type] = "file"
+libraries[jquery.cycle][download][url] = "https://raw.github.com/malsup/cycle/master/jquery.cycle.all.js"
+                            </pre>
                         </section>
                         <section>
                             <h2>Where Can Makefiles Download Their Resources From?</h2>
@@ -386,10 +456,6 @@ NOT EXISTS (blah blah blah blah));</pre>
                               <li>Version Control</li>
                               <li>FTP</li>
                             </ul>
-                        </section>
-                        <section>
-                            <h2>Makefiles Work Recursively!</h2>
-                            <div>Build -> Install profile -> colorbox -> colorbox Library</div>
                         </section>
                         <section>
                             <h2></h2>
@@ -449,9 +515,6 @@ projects[] = token
     <br>
 </div>
 </section>
-                                <section>
-                                    <h2>Titleasdfasdfasdfas</h2>
-                                </section>
                             </section>
                             <section>
                               <section>
@@ -485,7 +548,7 @@ projects[] = token
 			// Full list of configuration options available here:
 			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
-				controls: true,
+				controls: false,
 				progress: true,
 				history: true,
 
